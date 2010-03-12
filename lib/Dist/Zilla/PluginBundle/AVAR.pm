@@ -39,6 +39,7 @@ sub bundle_config {
     my $prefix = 'Dist::Zilla::Plugin::';
     my @extra = map {[ "$section->{name}/$_->[0]" => "$prefix$_->[0]" => $_->[1] ]}
     (
+        [ VersionFromPrev => {} ],
         [ AutoPrereq  => {} ],
         [ MetaJSON     => { } ],
         [
