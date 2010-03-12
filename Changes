@@ -2,6 +2,10 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.05 2010-03-12 18:45:40
+
+    - Silly error in previous releases broke all Git stuff
+
 0.04 2010-03-12 18:43:57
 
     - Test CPAN release
