@@ -19,7 +19,7 @@ sub bundle_config {
     my ($self, $section) = @_;
 
     my $args        = $section->{payload};
-    my $dist        = $args->{dist};
+    my $dist        = $args->{dist} // die "You must supply a dist =";
     my $ldist       = lc $dist;
     my $github_user = $args->{github_user} // 'avar';
 
