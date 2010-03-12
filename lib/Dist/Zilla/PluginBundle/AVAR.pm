@@ -65,13 +65,6 @@ sub bundle_config {
                 format => '%-2v %{yyyy-MM-dd HH:mm:ss}d',
             }
         ],
-        [ 'Git::Check' => {} ],
-        [ 'Git::Commit' => {} ],
-        [
-            'Git::Tag' => {
-                tag_format => '%v',
-            }
-        ]
     );
     push @plugins, @extra;
 
