@@ -1,25 +1,23 @@
 package Dist::Zilla::PluginBundle::AVAR;
-# ABSTRACT: BeLike::AVAR when you build your dists
 
 use 5.10.0;
 use Moose;
 use Moose::Autobox;
+
 with 'Dist::Zilla::Role::PluginBundle';
-
-=head1 DESCRIPTION
-
-This is the plugin bundle that AVAR uses.
-
-=cut
 
 use Dist::Zilla::PluginBundle::Filter;
 use Dist::Zilla::PluginBundle::Git;
+use Dist::Zilla::Plugin::VersionFromPrev;
+use Dist::Zilla::Plugin::AutoPrereq;
+use Dist::Zilla::Plugin::MetaNoIndex;
+use Dist::Zilla::Plugin::ReadmeFromPod;
 
 sub bundle_config {
     my ($self, $section) = @_;
 
     my $args        = $section->{payload};
-    my $dist        = $args->{dist} // die "You must supply a dist =";
+    my $dist        = $args->{dist} // die "You must supply a dist =, it's equivalent to what you supply as name =";
     my $ldist       = lc $dist;
     my $github_user = $args->{github_user} // 'avar';
 
@@ -80,5 +78,65 @@ sub bundle_config {
 }
 
 __PACKAGE__->meta->make_immutable;
-no Moose;
-1;
+
+=head1 NAME
+
+Dist::Zilla::PluginBundle::AVAR - Use L<Dist::Zilla> like AVAR does
+
+=head1 DESCRIPTION
+
+This is the plugin bundle that AVAR uses. Use it as:
+
+    [@AVAR]
+    ;; same as `name' earlier in the dist.ini, repeated due to
+    ;; limitations of the Dist::Zilla plugin interface
+    dist = MyDist
+    ;; If you're not avar
+    github_user = imposter
+
+It's equivalent to:
+
+    [@Filter]
+    bundle = @Classic
+    remove = PodVersion
+    remove = PodTests
+    
+    [VersionFromPrev]
+    [AutoPrereq]
+    [MetaJSON]
+
+    [MetaNoIndex]
+    ;; Only added if these directories exist
+    directory = inc
+    directory = t
+    directory = xt
+    directory = utils
+    
+    [ReadmeFromPod]
+
+    [MetaResources]
+    ;; $github_user is 'avar' by default, $lc_dist is lc($dist)
+    homepage   = http://search.cpan.org/dist/$dist/
+    bugtracker = http://github.com/$github_user/$lc_dist/issues
+    repository = http://github.com/$github_user/$lc_dist
+    license    = http://dev.perl.org/licenses/
+    Ratings    = http://cpanratings.perl.org/d/$dist
+    
+    [NextRelease]
+    format = %-2v %{yyyy-MM-dd HH:mm:ss}d
+    
+    [@Git]
+    tag_format = %v
+
+=head1 AUTHOR
+
+E<AElig>var ArnfjE<ouml>rE<eth> Bjarmason <avar@cpan.org>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright 2010 E<AElig>var ArnfjE<ouml>rE<eth> Bjarmason <avar@cpan.org>
+
+This program is free software, you can redistribute it and/or modify
+it under the same terms as Perl itself.
+    
+=cut
