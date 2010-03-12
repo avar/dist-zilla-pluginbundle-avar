@@ -2,5 +2,16 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.03 2010-03-12 18:42:57
+
+    - Another shot at making Git work, now with
+      Dist::Zilla::PluginBundle::Git
+
+0.02 2010-03-12 18:37:30
+
+    - Also use Git::Commit in my configuration
+
+0.01 2010-03-12 18:35:44
+
     - Forked from The Dist::Zilla::PluginBundle::RJBS with settings
       AVAR likes
