@@ -66,6 +66,7 @@ sub bundle_config {
             }
         ],
         [ 'Git::Check' => {} ],
+        [ 'Git::Commit' => {} ],
         [
             'Git::Tag' => {
                 tag_format => '%v',
