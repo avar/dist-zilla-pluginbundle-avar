@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.09 2010-03-13 12:43:29
+
     - Support a bugtracker option for setting github, rt or any other
       trackers in META.*
 
