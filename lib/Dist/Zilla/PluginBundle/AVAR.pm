@@ -58,7 +58,7 @@ sub bundle_config {
         [
             MetaNoIndex => {
                 # Ignore these if they're there
-                directory => [ map { -d $_ ? $_ : () } qw( inc t xt utils ) ],
+                directory => [ map { -d $_ ? $_ : () } qw( inc t xt utils example examples ) ],
             }
         ],
         # Produce README from lib/
@@ -131,6 +131,8 @@ It's equivalent to:
     directory = t
     directory = xt
     directory = utils
+    directory = example
+    directory = examples
     
     [ReadmeFromPod]
 

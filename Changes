@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - Also noindex the example and examples directories if they exist.
+
 0.10 2010-03-20 19:12:07
 
     - Use the public RT urls instead of the private ones that require
