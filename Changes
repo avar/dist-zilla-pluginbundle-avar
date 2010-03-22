@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.11 2010-03-22 11:26:50
+
     - Also noindex the example and examples directories if they exist.
 
 0.10 2010-03-20 19:12:07
