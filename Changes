@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.13 2010-03-27 21:08:19
+
     - Use Dist::Zilla::Plugin::CompileTests
 
     - Use MakeMaker by default in my dists. Hailo can do its own
