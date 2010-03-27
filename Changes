@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.12 2010-03-27 18:09:41
+
     - Don't use Dist::Zilla::Plugin::OverridableMakeMaker by
       default. I only use this for Hailo.
 
