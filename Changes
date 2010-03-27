@@ -2,6 +2,11 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - Use Dist::Zilla::Plugin::CompileTests
+
+    - Use MakeMaker by default in my dists. Hailo can do its own
+      thing.
+
 0.12 2010-03-27 18:09:41
 
     - Don't use Dist::Zilla::Plugin::OverridableMakeMaker by
