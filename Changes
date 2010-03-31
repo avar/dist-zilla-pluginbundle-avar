@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.14 2010-03-31 14:23:02
+
     - Depend on Dist::Zilla::Plugin::MakeMaker::Awesome
 
 0.13 2010-03-27 21:08:19
