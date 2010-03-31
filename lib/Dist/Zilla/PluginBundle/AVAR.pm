@@ -12,7 +12,7 @@ use Dist::Zilla::Plugin::VersionFromPrev;
 use Dist::Zilla::Plugin::AutoPrereq;
 use Dist::Zilla::Plugin::MetaNoIndex;
 use Dist::Zilla::Plugin::ReadmeFromPod;
-use Dist::Zilla::Plugin::OverridableMakeMaker;
+use Dist::Zilla::Plugin::MakeMaker::Awesome;
 use Dist::Zilla::Plugin::CompileTests;
 
 sub bundle_config {
