@@ -25,12 +25,19 @@ sub bundle_config {
     my $use_mm      = $args->{use_MakeMaker} // 1;
     my $use_ct      = $args->{use_CompileTests} // 1;
     my $bugtracker  = $args->{bugtracker}  // 'github';
+    my $homepage    = $args->{homepage};
     my $tracker;
+    my $page;
 
     given ($bugtracker) {
         when ('github') { $tracker = "http://github.com/$github_user/$ldist/issues" }
         when ('rt')     { $tracker = "https://rt.cpan.org/Public/Dist/Display.html?Name=$dist" }
         default         { $tracker = $bugtracker }
+    }
+
+    given ($homepage) {
+        when (not defined) { $page = "http://search.cpan.org/dist/$dist/" }
+        default            { $page = $homepage }
     }
 
     my @plugins = Dist::Zilla::PluginBundle::Filter->bundle_config({
@@ -66,7 +73,7 @@ sub bundle_config {
         [ ReadmeFromPod => {} ],
         [
             MetaResources => {
-                homepage => "http://search.cpan.org/dist/$dist/",
+                homepage => $page,
                 bugtracker => $tracker,
                 repository => "http://github.com/$github_user/$ldist",
                 license => 'http://dev.perl.org/licenses/',
