@@ -9,7 +9,6 @@ with 'Dist::Zilla::Role::PluginBundle';
 use Dist::Zilla::PluginBundle::Filter;
 use Dist::Zilla::PluginBundle::Git;
 use Dist::Zilla::Plugin::VersionFromPrev;
-use Dist::Zilla::Plugin::AutoPrereq;
 use Dist::Zilla::Plugin::MetaNoIndex;
 use Dist::Zilla::Plugin::ReadmeFromPod;
 use Dist::Zilla::Plugin::MakeMaker::Awesome;
