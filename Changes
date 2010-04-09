@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - Ignore PodCoverageTests which in DZ2 was split from the now
+      obsolete PodTests.
+
 0.14 2010-03-31 14:23:02
 
     - Depend on Dist::Zilla::Plugin::MakeMaker::Awesome

@@ -42,7 +42,7 @@ sub bundle_config {
                 # Don't add a =head1 VERSION
                 'PodVersion',
                 # This will inevitably whine about completely reasonable stuff
-                'PodTests',
+                'PodCoverageTests',
                 # Use my MakeMaker
                 'MakeMaker',
             ],
@@ -126,7 +126,7 @@ It's equivalent to:
     [@Filter]
     bundle = @Classic
     remove = PodVersion
-    remove = PodTests
+    remove = PodCoverageTests
     
     [VersionFromPrev]
     [AutoPrereq]
