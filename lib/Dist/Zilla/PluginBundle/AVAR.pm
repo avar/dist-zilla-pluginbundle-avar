@@ -26,13 +26,20 @@ sub bundle_config {
     my $use_ct      = $args->{use_CompileTests} // 1;
     my $bugtracker  = $args->{bugtracker}  // 'github';
     my $homepage    = $args->{homepage};
+    my $repository  = $args->{repository};
     my $tracker;
     my $page;
+    my $repo;
 
     given ($bugtracker) {
         when ('github') { $tracker = "http://github.com/$github_user/$ldist/issues" }
         when ('rt')     { $tracker = "https://rt.cpan.org/Public/Dist/Display.html?Name=$dist" }
         default         { $tracker = $bugtracker }
+    }
+
+    given ($repository) {
+        when (not defined) { $repo = "http://github.com/$github_user/$ldist" }
+        default            { $repo = $repository }
     }
 
     given ($homepage) {
@@ -75,7 +82,7 @@ sub bundle_config {
             MetaResources => {
                 homepage => $page,
                 bugtracker => $tracker,
-                repository => "http://github.com/$github_user/$ldist",
+                repository => $repo,
                 license => 'http://dev.perl.org/licenses/',
                 Ratings => "http://cpanratings.perl.org/d/$dist",
             }
@@ -126,6 +133,15 @@ This is the plugin bundle that AVAR uses. Use it as:
     dist = MyDist
     ;; If you're not avar
     github_user = imposter
+    ;; Bugtracker github or rt
+    bugtracker = rt
+    ;; custom homepage/repository
+    homepage = http://example.com
+    repository = http://git.example.com/repo.git
+    ;; use various stuff or not
+    no_AutoPrereq = 1 ; evil for this module
+    use_MakeMaker = 0 ; If using e.g. MakeMaker::Awesome instead
+    use_ComplieTests = 0 ; I have my own compile tests here..
 
 It's equivalent to:
 

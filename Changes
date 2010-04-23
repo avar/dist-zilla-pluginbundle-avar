@@ -2,6 +2,10 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - Add repository=* option
+
+    - Document options in synopsis
+
 0.15 2010-04-09 13:21:35
 
     - Ignore PodCoverageTests which in DZ2 was split from the now
