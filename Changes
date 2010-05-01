@@ -2,6 +2,11 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.17 2010-05-01 21:24:30
+
+    - Re-release due to Makefile.PL breakage caused by Dist::Zilla
+      FAIL: http://github.com/rjbs/dist-zilla/commit/2e47b6c205
+
 0.16 2010-04-23 04:25:18
 
     - Add repository=* option
