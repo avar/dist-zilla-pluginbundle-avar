@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.18 2010-05-26 12:38:13
+
     - Use RT, not Github as the bugtracker by default
 
 0.17 2010-05-01 21:24:30
