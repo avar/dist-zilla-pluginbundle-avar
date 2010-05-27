@@ -13,6 +13,7 @@ use Dist::Zilla::Plugin::MetaNoIndex;
 use Dist::Zilla::Plugin::ReadmeFromPod;
 use Dist::Zilla::Plugin::MakeMaker::Awesome;
 use Dist::Zilla::Plugin::CompileTests;
+use Dist::Zilla::Plugin::Authority;
 
 sub bundle_config {
     my ($self, $section) = @_;
@@ -26,20 +27,31 @@ sub bundle_config {
     my $use_ct      = $args->{use_CompileTests} // 1;
     my $bugtracker  = $args->{bugtracker}  // 'github';
     my $homepage    = $args->{homepage};
-    my $repository  = $args->{repository};
-    my $tracker;
+    die "AVAR: Upgrade to new format" if $args->{repository};
+    my $repository_url  = $args->{repository_url};
+    my $repository_web  = $args->{repository_web};
+    my ($tracker, $tracker_mailto);
     my $page;
-    my $repo;
+    my ($repo_url, $repo_web);
 
     given ($bugtracker) {
         when ('github') { $tracker = "http://github.com/$github_user/$ldist/issues" }
-        when ('rt')     { $tracker = "https://rt.cpan.org/Public/Dist/Display.html?Name=$dist" }
+        when ('rt')     {
+            $tracker = "https://rt.cpan.org/Public/Dist/Display.html?Name=$dist";
+            $tracker_mailto = sprintf 'bug-%s@rt.cpan.org', $dist;
+        }
         default         { $tracker = $bugtracker }
     }
 
-    given ($repository) {
-        when (not defined) { $repo = "http://github.com/$github_user/$ldist" }
-        default            { $repo = $repository }
+    given ($repository_url) {
+        when (not defined) {
+            $repo_web = "http://github.com/$github_user/$ldist";
+            $repo_url = "git://github.com/$github_user/$ldist.git";
+        }
+        default {
+            $repo_web = $repository_web;
+            $repo_url = $repository_url;
+        }
     }
 
     given ($homepage) {
@@ -81,12 +93,21 @@ sub bundle_config {
         [
             MetaResources => {
                 homepage => $page,
-                bugtracker => $tracker,
-                repository => $repo,
+                'bugtracker.url' => $tracker,
+                'bugtracker.mailto' => $tracker_mailto,
+                'repository.type' => 'git',
+                'repository.url' => $repo_url,
+                'repository.web' => $repo_web,
                 license => 'http://dev.perl.org/licenses/',
                 Ratings => "http://cpanratings.perl.org/d/$dist",
             }
 
+        ],
+        [
+            Authority => {
+                authority   => 'cpan:AVAR',
+                do_metadata => 1,
+            }
         ],
         # Bump the Changlog
         [
