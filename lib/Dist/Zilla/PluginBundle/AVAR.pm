@@ -25,7 +25,7 @@ sub bundle_config {
     my $no_a_pre    = $args->{no_AutoPrereq} // 0;
     my $use_mm      = $args->{use_MakeMaker} // 1;
     my $use_ct      = $args->{use_CompileTests} // 1;
-    my $bugtracker  = $args->{bugtracker}  // 'github';
+    my $bugtracker  = $args->{bugtracker}  // 'rt';
     my $homepage    = $args->{homepage};
     die "AVAR: Upgrade to new format" if $args->{repository};
     my $repository_url  = $args->{repository_url};
