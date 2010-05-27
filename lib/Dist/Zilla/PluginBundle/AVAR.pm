@@ -190,10 +190,17 @@ It's equivalent to:
     [MetaResources]
     ;; $github_user is 'avar' by default, $lc_dist is lc($dist)
     homepage   = http://search.cpan.org/dist/$dist/
-    bugtracker = http://github.com/$github_user/$lc_dist/issues
-    repository = http://github.com/$github_user/$lc_dist
+    bugtracker.mailto = bug-$dist@rt.cpan.org
+    bugtracker.web = https://rt.cpan.org/Public/Dist/Display.html?Name=$dist
+    repository.web = http://github.com/$github_user/$lc_dist
+    repository.url = git://github.com/$github_user/$lc_dist.git
+    repository.type = git
     license    = http://dev.perl.org/licenses/
     Ratings    = http://cpanratings.perl.org/d/$dist
+
+    [Authority]
+    authority   = cpan:AVAR
+    do_metadata = 1
     
     [NextRelease]
     format = %-2v %{yyyy-MM-dd HH:mm:ss}d
