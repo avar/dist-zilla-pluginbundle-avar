@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - Make the AVAR: die() a warn(). dngor's snerp-vortex is still
+      using this.
+
 0.19 2010-05-27 19:32:08
 
     - Use v3-like repo/bugtracker metadata. And use Authority too.
