@@ -5,6 +5,9 @@ Revision history for {{$dist->name}}
     - Make the AVAR: die() a warn(). dngor's snerp-vortex is still
       using this.
 
+    - Fix META validation errors. Remove Ratings entry, and
+      bugtracker.web, not bugtracker.url.
+
 0.19 2010-05-27 19:32:08
 
     - Use v3-like repo/bugtracker metadata. And use Authority too.

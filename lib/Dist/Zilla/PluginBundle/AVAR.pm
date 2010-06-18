@@ -94,13 +94,12 @@ sub bundle_config {
         [
             MetaResources => {
                 homepage => $page,
-                'bugtracker.url' => $tracker,
+                'bugtracker.web' => $tracker,
                 'bugtracker.mailto' => $tracker_mailto,
                 'repository.type' => 'git',
                 'repository.url' => $repo_url,
                 'repository.web' => $repo_web,
                 license => 'http://dev.perl.org/licenses/',
-                Ratings => "http://cpanratings.perl.org/d/$dist",
             }
 
         ],
@@ -196,7 +195,6 @@ It's equivalent to:
     repository.url = git://github.com/$github_user/$lc_dist.git
     repository.type = git
     license    = http://dev.perl.org/licenses/
-    Ratings    = http://cpanratings.perl.org/d/$dist
 
     [Authority]
     authority   = cpan:AVAR
