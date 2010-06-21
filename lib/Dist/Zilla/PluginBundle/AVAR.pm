@@ -22,6 +22,7 @@ sub bundle_config {
     my $dist        = $args->{dist} // die "You must supply a dist =, it's equivalent to what you supply as name =";
     my $ldist       = lc $dist;
     my $github_user = $args->{github_user} // 'avar';
+    my $authority   = $args->{authority} // 'cpan:AVAR';
     my $no_a_pre    = $args->{no_AutoPrereq} // 0;
     my $use_mm      = $args->{use_MakeMaker} // 1;
     my $use_ct      = $args->{use_CompileTests} // 1;
@@ -105,7 +106,7 @@ sub bundle_config {
         ],
         [
             Authority => {
-                authority   => 'cpan:AVAR',
+                authority   => $authority,
                 do_metadata => 1,
             }
         ],
@@ -163,6 +164,8 @@ This is the plugin bundle that AVAR uses. Use it as:
     no_AutoPrereq = 1 ; evil for this module
     use_MakeMaker = 0 ; If using e.g. MakeMaker::Awesome instead
     use_CompileTests = 0 ; I have my own compile tests here..
+    ;; cpan:AVAR is the default AUTHORITY
+    authority = cpan:AVAR
 
 It's equivalent to:
 
