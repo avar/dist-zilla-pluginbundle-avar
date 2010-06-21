@@ -162,7 +162,7 @@ This is the plugin bundle that AVAR uses. Use it as:
     ;; use various stuff or not
     no_AutoPrereq = 1 ; evil for this module
     use_MakeMaker = 0 ; If using e.g. MakeMaker::Awesome instead
-    use_ComplieTests = 0 ; I have my own compile tests here..
+    use_CompileTests = 0 ; I have my own compile tests here..
 
 It's equivalent to:
 

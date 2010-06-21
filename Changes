@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - Fix POD typo pointed out by Hinrik
+
 0.20 2010-06-18 13:01:23
 
     - Make the AVAR: die() a warn(). dngor's snerp-vortex is still
