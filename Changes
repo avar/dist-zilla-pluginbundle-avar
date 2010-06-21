@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.22 2010-06-21 17:48:10
+
     - authority= parameter to override Authority's authority param.
 
 0.21 2010-06-21 17:10:32
