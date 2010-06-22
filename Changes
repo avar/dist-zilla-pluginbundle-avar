@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - Make [NextRelease] format=* and [Git] tag_message configurable
+      for Hinrik.
+
 0.22 2010-06-21 17:48:10
 
     - authority= parameter to override Authority's authority param.
