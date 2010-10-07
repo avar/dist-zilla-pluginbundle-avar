@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - Use BumpVersionFromGit instead of VersionFromPrev. It uses
+      Version::Next, which supports GNU-style (e.g. 1.2.2) versions.
+
 0.23 2010-06-22 18:10:37
 
     - Make [NextRelease] format=* and [Git] tag_message configurable

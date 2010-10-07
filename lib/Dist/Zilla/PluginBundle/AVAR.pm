@@ -8,7 +8,7 @@ with 'Dist::Zilla::Role::PluginBundle';
 
 use Dist::Zilla::PluginBundle::Filter;
 use Dist::Zilla::PluginBundle::Git;
-use Dist::Zilla::Plugin::VersionFromPrev;
+use Dist::Zilla::Plugin::BumpVersionFromGit;
 use Dist::Zilla::Plugin::MetaNoIndex;
 use Dist::Zilla::Plugin::ReadmeFromPod;
 use Dist::Zilla::Plugin::MakeMaker::Awesome;
@@ -81,7 +81,11 @@ sub bundle_config {
     my $prefix = 'Dist::Zilla::Plugin::';
     my @extra = map {[ "$section->{name}/$_->[0]" => "$prefix$_->[0]" => $_->[1] ]}
     (
-        [ VersionFromPrev => {} ],
+        [
+            BumpVersionFromGit => {
+                version_regexp => '^(\d.*)$',
+            }
+        ],
         ($no_a_pre
          ? ()
          : ([ AutoPrereq  => { } ])),
