@@ -88,7 +88,7 @@ sub bundle_config {
         ],
         ($no_a_pre
          ? ()
-         : ([ AutoPrereq  => { } ])),
+         : ([ AutoPrereqs  => { } ])),
         [ MetaJSON     => { } ],
         [
             MetaNoIndex => {
@@ -184,7 +184,7 @@ It's equivalent to:
     remove = PodCoverageTests
     
     [VersionFromPrev]
-    [AutoPrereq]
+    [AutoPrereqs]
     [MetaJSON]
 
     [MetaNoIndex]

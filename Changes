@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - Update dist to match Prereq -> Prereqs change
+
 0.24 2010-10-07 16:07:09
 
     - Use BumpVersionFromGit instead of VersionFromPrev. It uses
