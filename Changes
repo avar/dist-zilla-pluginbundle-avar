@@ -4,6 +4,9 @@ Revision history for {{$dist->name}}
 
     - Update dist to match Prereq -> Prereqs change
 
+    - Use Plugin::Git::NextVersion from PluginBundle::Git instead of
+      Plugin::BumpVersionFromGit, and set first_version to '0.01'
+
 0.24 2010-10-07 16:07:09
 
     - Use BumpVersionFromGit instead of VersionFromPrev. It uses

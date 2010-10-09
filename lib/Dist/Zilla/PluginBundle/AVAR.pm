@@ -7,8 +7,7 @@ use Moose::Autobox;
 with 'Dist::Zilla::Role::PluginBundle';
 
 use Dist::Zilla::PluginBundle::Filter;
-use Dist::Zilla::PluginBundle::Git;
-use Dist::Zilla::Plugin::BumpVersionFromGit;
+use Dist::Zilla::PluginBundle::Git 1.102810;
 use Dist::Zilla::Plugin::MetaNoIndex;
 use Dist::Zilla::Plugin::ReadmeFromPod;
 use Dist::Zilla::Plugin::MakeMaker::Awesome;
@@ -34,6 +33,7 @@ sub bundle_config {
     my $repository_web  = $args->{repository_web};
     my $nextrelease_format = $args->{nextrelease_format} // '%-2v %{yyyy-MM-dd HH:mm:ss}d',
     my $tag_message = $args->{git_tag_message};
+    my $version_regexp = $args->{git_version_regexp};
     my ($tracker, $tracker_mailto);
     my $page;
     my ($repo_url, $repo_web);
@@ -82,8 +82,11 @@ sub bundle_config {
     my @extra = map {[ "$section->{name}/$_->[0]" => "$prefix$_->[0]" => $_->[1] ]}
     (
         [
-            BumpVersionFromGit => {
-                version_regexp => '^(\d.*)$',
+            'Git::NextVersion' => {
+                first_version => '0.01',
+                ($version_regexp
+                ? (version_regexp => $version_regexp)
+                : (version_regexp => '^(\d.*)$')),
             }
         ],
         ($no_a_pre
@@ -217,6 +220,8 @@ It's equivalent to:
     
     [@Git]
     tag_format = %v
+    version_regexp = '^(\d.*)$'
+    first_version = '0.01'
 
 =head1 AUTHOR
 
