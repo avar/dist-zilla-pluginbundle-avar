@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.26 2011-07-29 01:54:18
+
     - Update dist to match Prereq -> Prereqs change
 
     - Use Plugin::Git::NextVersion from PluginBundle::Git instead of
