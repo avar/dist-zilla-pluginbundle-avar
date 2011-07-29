@@ -59,7 +59,7 @@ sub bundle_config {
     }
 
     given ($homepage) {
-        when (not defined) { $page = "http://search.cpan.org/dist/$dist/" }
+        when (not defined) { $page = "http://metacpan.org/release/$dist" }
         default            { $page = $homepage }
     }
 
