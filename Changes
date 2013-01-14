@@ -2,6 +2,11 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - Replace CompileTests with Test::Compile as CompileTests is deprecated
+
+    - Read dist and authority from dzil config and github_user from git config
+      github.user or $ENV{GITHUB_USER}
+
 0.26 2011-07-29 01:54:18
 
     - Update dist to match Prereq -> Prereqs change

@@ -194,7 +194,7 @@ Dist::Zilla::PluginBundle::AVAR - Use L<Dist::Zilla> like AVAR does
 This is the plugin bundle that AVAR uses. Use it as:
 
     [@AVAR]
-    ;; same as `name' earlier in the dist.ini, optional
+    ;; same as `name' earlier in the dist.ini (optional, detected from $dzil->name)
     dist = MyDist
     ;; If you're not avar (will be read from "git config github.user" or $ENV{GITHUB_USER} by default)
     github_user = imposter
