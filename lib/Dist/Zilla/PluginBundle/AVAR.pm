@@ -270,6 +270,22 @@ It's equivalent to:
     [InstallRelease]
     install_command = cpanm .
 
+If you'd like a minting profile (to create new modules with all the
+boilerplate) for this PluginBundle, check out:
+L<Dist::Zilla::MintingProfile::Author::Caelum>.
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<Dist::Zilla>
+
+=item * L<Dist::Zilla::PluginBundle::Git>
+
+=item * L<Dist::Zilla::MintingProfile::Author::Caelum>
+
+=back
+
 =head1 AUTHOR
 
 E<AElig>var ArnfjE<ouml>rE<eth> Bjarmason <avar@cpan.org>
