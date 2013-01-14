@@ -11,7 +11,7 @@ use Dist::Zilla::PluginBundle::Git 1.102810;
 use Dist::Zilla::Plugin::MetaNoIndex;
 use Dist::Zilla::Plugin::ReadmeFromPod;
 use Dist::Zilla::Plugin::MakeMaker::Awesome;
-use Dist::Zilla::Plugin::CompileTests;
+use Dist::Zilla::Plugin::Test::Compile;
 use Dist::Zilla::Plugin::Authority;
 
 sub bundle_config {
@@ -24,7 +24,7 @@ sub bundle_config {
     my $authority   = $args->{authority} // 'cpan:AVAR';
     my $no_a_pre    = $args->{no_AutoPrereq} // 0;
     my $use_mm      = $args->{use_MakeMaker} // 1;
-    my $use_ct      = $args->{use_CompileTests} // 1;
+    my $use_ct      = $args->{use_CompileTests} // $args->{use_TestCompile} // 1;
     my $bugtracker  = $args->{bugtracker}  // 'rt';
     warn "AVAR: Don't use GitHub as a tracker" if $bugtracker eq 'github';
     my $homepage    = $args->{homepage};
@@ -133,7 +133,7 @@ sub bundle_config {
 
         # Maybe CompileTests
         ($use_ct
-         ? ([ CompileTests  => { } ])
+         ? ([ 'Test::Compile'  => { } ])
          : ()),
     );
     push @plugins, @extra;
