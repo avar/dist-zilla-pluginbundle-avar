@@ -50,6 +50,9 @@ sub bundle_config {
     my $nextrelease_format = $args->{nextrelease_format} // '%-2v %{yyyy-MM-dd HH:mm:ss}d',
     my $tag_message = $args->{git_tag_message};
     my $version_regexp = $args->{git_version_regexp};
+
+    my $install_command = $args->{install_command};
+
     my ($tracker, $tracker_mailto);
     my $page;
     my ($repo_url, $repo_web);
@@ -142,11 +145,11 @@ sub bundle_config {
             }
         ],
         # install a copy for ourselves when releasing
-        [
+        ($install_command ? ([
             InstallRelease => {
-                install_command => 'cpanm .',
+                install_command => $install_command,
             }
-        ],
+        ]) : ()),
 
         # Maybe use MakeMaker, maybe not
         ($use_mm
@@ -216,6 +219,9 @@ This is the plugin bundle that AVAR uses. Use it as:
     use_TestCompile = 0 ; I have my own compile tests here..
     ;; cpan:YOUR_CPAN_ID is the default authority, read from "dzil setup" entry for PAUSE
     authority = cpan:AVAR
+    ;; if you want to install your dist after release (set $ENV{PERL_CPANM_OPTS} if you need --sudo or --mirror etc.)
+    ;; default is OFF
+    install_command = cpanm .
 
 It's equivalent to:
 
