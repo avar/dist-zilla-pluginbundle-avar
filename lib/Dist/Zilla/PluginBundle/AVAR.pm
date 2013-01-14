@@ -13,6 +13,7 @@ use Dist::Zilla::Plugin::ReadmeFromPod;
 use Dist::Zilla::Plugin::MakeMaker::Awesome;
 use Dist::Zilla::Plugin::Test::Compile;
 use Dist::Zilla::Plugin::Authority;
+use Dist::Zilla::Plugin::InstallRelease;
 use Try::Tiny;
 use Git::Wrapper ();
 use Dist::Zilla::Chrome::Term ();
@@ -140,6 +141,12 @@ sub bundle_config {
                 format => $nextrelease_format,
             }
         ],
+        # install a copy for ourselves when releasing
+        [
+            InstallRelease => {
+                install_command => 'cpanm .',
+            }
+        ],
 
         # Maybe use MakeMaker, maybe not
         ($use_mm
@@ -253,6 +260,9 @@ It's equivalent to:
     tag_format = %v
     version_regexp = '^(\d.*)$'
     first_version = '0.01'
+
+    [InstallRelease]
+    install_command = cpanm .
 
 =head1 AUTHOR
 

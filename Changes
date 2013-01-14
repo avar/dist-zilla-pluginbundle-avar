@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - Add InstallRelease with install_command = "cpanm ."
+
     - Replace CompileTests with Test::Compile as CompileTests is deprecated
 
     - Read dist and authority from dzil config and github_user from git config
