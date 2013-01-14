@@ -13,15 +13,30 @@ use Dist::Zilla::Plugin::ReadmeFromPod;
 use Dist::Zilla::Plugin::MakeMaker::Awesome;
 use Dist::Zilla::Plugin::Test::Compile;
 use Dist::Zilla::Plugin::Authority;
+use Try::Tiny;
+use Git::Wrapper ();
+use Dist::Zilla::Chrome::Term ();
+use Dist::Zilla::Dist::Builder ();
+use Dist::Zilla::App ();
 
 sub bundle_config {
     my ($self, $section) = @_;
 
     my $args        = $section->{payload};
-    my $dist        = $args->{dist} // die "You must supply a dist =, it's equivalent to what you supply as name =";
+
+    my $zilla       = $self->_get_zilla;
+
+    my $dist        = $args->{dist} // $zilla->name || die "You must supply a dist =, it's equivalent to what you supply as name =";
+
     my $ldist       = lc $dist;
-    my $github_user = $args->{github_user} // 'avar';
-    my $authority   = $args->{authority} // 'cpan:AVAR';
+
+    my $git = Git::Wrapper->new('.');
+
+    my $github_user = $args->{github_user} // try { ($git->config('github.user'))[0] } || $ENV{GITHUB_USER} || 'avar';
+
+    my $cpan_id = try { $zilla->stash_named('%PAUSE')->username };
+
+    my $authority   = $args->{authority} // ($cpan_id ? "cpan:$cpan_id" : 'cpan:AVAR');
     my $no_a_pre    = $args->{no_AutoPrereq} // 0;
     my $use_mm      = $args->{use_MakeMaker} // 1;
     my $use_ct      = $args->{use_CompileTests} // $args->{use_TestCompile} // 1;
@@ -151,6 +166,23 @@ sub bundle_config {
     return @plugins;
 }
 
+sub _get_zilla {
+    no warnings 'redefine';
+    # avoid recursive loop
+    local *Dist::Zilla::PluginBundle::AVAR::bundle_config = sub { };
+
+    my $chrome = Dist::Zilla::Chrome::Term->new;
+
+    # this sucks
+    local *Dist::Zilla::App::chrome = sub { $chrome };
+
+    return Dist::Zilla::Dist::Builder->from_config({
+        dist_root => '.',
+        chrome    => $chrome,
+        _global_stashes => Dist::Zilla::App->new->_build_global_stashes,
+    });
+}
+
 __PACKAGE__->meta->make_immutable;
 
 =head1 NAME
@@ -162,21 +194,20 @@ Dist::Zilla::PluginBundle::AVAR - Use L<Dist::Zilla> like AVAR does
 This is the plugin bundle that AVAR uses. Use it as:
 
     [@AVAR]
-    ;; same as `name' earlier in the dist.ini, repeated due to
-    ;; limitations of the Dist::Zilla plugin interface
+    ;; same as `name' earlier in the dist.ini, optional
     dist = MyDist
-    ;; If you're not avar
+    ;; If you're not avar (will be read from "git config github.user" or $ENV{GITHUB_USER} by default)
     github_user = imposter
-    ;; Bugtracker github or rt
+    ;; Bugtracker github or rt, default is rt
     bugtracker = rt
-    ;; custom homepage/repository
+    ;; custom homepage/repository, defaults to metacpan page and github repository lc($dist->name)
     homepage = http://example.com
     repository = http://git.example.com/repo.git
     ;; use various stuff or not
     no_AutoPrereq = 1 ; evil for this module
     use_MakeMaker = 0 ; If using e.g. MakeMaker::Awesome instead
-    use_CompileTests = 0 ; I have my own compile tests here..
-    ;; cpan:AVAR is the default AUTHORITY
+    use_TestCompile = 0 ; I have my own compile tests here..
+    ;; cpan:YOUR_CPAN_ID is the default authority, read from "dzil setup" entry for PAUSE
     authority = cpan:AVAR
 
 It's equivalent to:
