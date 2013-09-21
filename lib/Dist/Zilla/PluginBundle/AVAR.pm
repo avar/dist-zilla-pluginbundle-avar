@@ -236,7 +236,7 @@ It's equivalent to:
     remove = PodVersion
     remove = PodCoverageTests
     
-    [VersionFromPrev]
+    [Git::NextVersion]
     [AutoPrereqs]
     [MetaJSON]
 
