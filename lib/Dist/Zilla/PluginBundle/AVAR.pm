@@ -43,7 +43,6 @@ sub bundle_config {
     my $use_mm      = $args->{use_MakeMaker} // 1;
     my $use_ct      = $args->{use_CompileTests} // $args->{use_TestCompile} // 1;
     my $bugtracker  = $args->{bugtracker}  // 'rt';
-    warn "AVAR: Don't use GitHub as a tracker" if $bugtracker eq 'github';
     my $homepage    = $args->{homepage};
     warn "AVAR: Upgrade to new format" if $args->{repository};
     my $repository_url  = $args->{repository_url};
