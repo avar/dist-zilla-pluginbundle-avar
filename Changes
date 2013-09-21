@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.30 2013-09-21 06:00:47
+
     - Update docs to indicate that we don't use VersionFromPrev, which
       we haven't in *forever*.
 
