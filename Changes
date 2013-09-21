@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.29 2013-09-21 05:49:37
+
     - Add the no_Authority option which can be used to disable the
       "Authority" module.
 
