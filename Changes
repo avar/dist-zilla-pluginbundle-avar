@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - Add the no_Authority option which can be used to disable the
+      "Authority" module.
+
 0.28 2013-01-14 11:56:10
 
     - Disable InstallRelease unless install_command is set
