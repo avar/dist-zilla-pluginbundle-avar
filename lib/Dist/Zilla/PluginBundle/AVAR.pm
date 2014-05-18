@@ -178,6 +178,18 @@ sub bundle_config {
         },
     });
 
+    # remove empty entries, Config::MVP crashes on them
+
+    foreach my $p (@plugins) {
+        my ($name, $package, $payload) = @$p;
+
+        while (my ($k, $v) = each %$payload) {
+            if (!$v || (ref $v eq 'ARRAY' && !@$v) || (ref $v eq 'HASH' && !%$v)) {
+                delete $payload->{$k};
+            }
+        }
+    }
+
     return @plugins;
 }
 
