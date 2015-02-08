@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.32 2015-02-08 08:48:53
+
     - fix warnings from given/when on perl 5.18+
 
 0.31 2014-05-18 11:17:59
