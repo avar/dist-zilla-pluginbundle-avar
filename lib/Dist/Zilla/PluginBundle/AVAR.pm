@@ -2,6 +2,7 @@ package Dist::Zilla::PluginBundle::AVAR;
 
 use 5.10.0;
 use Moose;
+use experimental 'smartmatch';
 use Moose::Autobox;
 
 with 'Dist::Zilla::Role::PluginBundle';
