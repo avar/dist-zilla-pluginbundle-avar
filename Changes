@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - Stop using the Authority module by default, really, does anyone
+      care about this thing? It was a silly hack of mine at the time.
+
 0.33 2016-08-10 13:46:30
 
     - We now pass use_begin => 1 to PkgVersion so this Just Works with
