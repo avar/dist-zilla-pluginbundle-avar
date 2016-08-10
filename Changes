@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - We now pass use_begin => 1 to PkgVersion so this Just Works with
+      XS distros.
+
     - Version 0.32 would only work on perls that had experimental.pm,
       e.g. not on 5.14.2, just stop using that module & smartmatch.
 

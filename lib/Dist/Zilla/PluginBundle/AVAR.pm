@@ -92,6 +92,8 @@ sub bundle_config {
                 'PodCoverageTests',
                 # Use my MakeMaker
                 'MakeMaker',
+                # Use the use_begin argument to PkgVersion
+                'PkgVersion',
             ],
         },
     });
@@ -99,6 +101,11 @@ sub bundle_config {
     my $prefix = 'Dist::Zilla::Plugin::';
     my @extra = map {[ "$section->{name}/$_->[0]" => "$prefix$_->[0]" => $_->[1] ]}
     (
+        [
+            'PkgVersion' => {
+                use_begin => 1,
+            },
+        ],
         [
             'Git::NextVersion' => {
                 first_version => '0.01',
