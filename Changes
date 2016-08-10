@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - Version 0.32 would only work on perls that had experimental.pm,
+      e.g. not on 5.14.2, just stop using that module & smartmatch.
+
 0.32 2015-02-08 08:48:53
 
     - fix warnings from given/when on perl 5.18+

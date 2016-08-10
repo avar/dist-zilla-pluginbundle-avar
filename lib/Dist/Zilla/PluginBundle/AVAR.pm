@@ -2,7 +2,6 @@ package Dist::Zilla::PluginBundle::AVAR;
 
 use 5.10.0;
 use Moose;
-use experimental 'smartmatch';
 use Moose::Autobox;
 
 with 'Dist::Zilla::Role::PluginBundle';
@@ -58,29 +57,28 @@ sub bundle_config {
     my $page;
     my ($repo_url, $repo_web);
 
-    given ($bugtracker) {
-        when ('github') { $tracker = "http://github.com/$github_user/$ldist/issues" }
-        when ('rt')     {
-            $tracker = "https://rt.cpan.org/Public/Dist/Display.html?Name=$dist";
-            $tracker_mailto = sprintf 'bug-%s@rt.cpan.org', $dist;
-        }
-        default         { $tracker = $bugtracker }
+    if ($bugtracker eq 'github') {
+        $tracker = "http://github.com/$github_user/$ldist/issues";
+    } elsif ($bugtracker eq 'rt') {
+        $tracker = "https://rt.cpan.org/Public/Dist/Display.html?Name=$dist";
+        $tracker_mailto = sprintf 'bug-%s@rt.cpan.org', $dist;
+    } else {
+        $tracker = $bugtracker;
     }
 
-    given ($repository_url) {
-        when (not defined) {
-            $repo_web = "http://github.com/$github_user/$ldist";
-            $repo_url = "git://github.com/$github_user/$ldist.git";
-        }
-        default {
-            $repo_web = $repository_web;
-            $repo_url = $repository_url;
-        }
+
+    unless ($repository_url) {
+        $repo_web = "http://github.com/$github_user/$ldist";
+        $repo_url = "git://github.com/$github_user/$ldist.git";
+    } else {
+        $repo_web = $repository_web;
+        $repo_url = $repository_url;
     }
 
-    given ($homepage) {
-        when (not defined) { $page = "http://metacpan.org/release/$dist" }
-        default            { $page = $homepage }
+    unless (defined $homepage) {
+        $page = "http://metacpan.org/release/$dist";
+    } else {
+        $page = $homepage;
     }
 
     my @plugins = Dist::Zilla::PluginBundle::Filter->bundle_config({
