@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+    - stop using unused module Moose::Autobox (haarg)
+
 0.34 2016-08-10 13:51:30
 
     - Stop using the Authority module by default, really, does anyone
