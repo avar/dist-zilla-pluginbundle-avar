@@ -2,6 +2,8 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.35 2023-07-31 16:57:35
+
     - stop using unused module Moose::Autobox (haarg)
 
 0.34 2016-08-10 13:51:30
